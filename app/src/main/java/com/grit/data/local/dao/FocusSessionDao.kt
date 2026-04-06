@@ -15,6 +15,9 @@ interface FocusSessionDao {
     @Update
     suspend fun update(session: FocusSessionEntity)
 
+    @Query("SELECT * FROM focus_sessions WHERE id = :sessionId LIMIT 1")
+    suspend fun getSessionById(sessionId: Long): FocusSessionEntity?
+
     @Query("SELECT * FROM focus_sessions WHERE isActive = 1 LIMIT 1")
     suspend fun getActiveSession(): FocusSessionEntity?
 
