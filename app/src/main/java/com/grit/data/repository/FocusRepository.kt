@@ -55,7 +55,7 @@ class FocusRepository(
     }
 
     suspend fun endSession(sessionId: Long, completed: Boolean) {
-        val session = sessionDao.getActiveSession()
+        val session = sessionDao.getSessionById(sessionId)
         session?.let {
             val endTime = System.currentTimeMillis()
             val duration = ((endTime - it.startTime) / 60000).toInt()
